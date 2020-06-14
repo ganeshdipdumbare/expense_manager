@@ -1,4 +1,4 @@
-import 'package:expense_manager/widget/transaction_list.dart';
+import './widget/user_transactions.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -43,46 +43,12 @@ class MyHomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              child: Text('hello'),
+              color: Colors.blue,
+              child: Text('chart'),
               elevation: 5,
             ),
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Title',
-                    ),
-                    //onChanged: (val) => {titleInput = val},
-                    controller: titleController,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Amount',
-                    ),
-                    controller: amountController,
-                    //onChanged: (val) => {amountInput = val},
-                  ),
-                  FlatButton(
-                    textColor: Colors.purple,
-                    onPressed: () {
-                      print(titleController.text);
-                      print(amountController.text);
-                    },
-                    child: Text(
-                      'Add Transaction',
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          TransactionList(),
+          UserTransactions(),
         ],
       ),
     );
