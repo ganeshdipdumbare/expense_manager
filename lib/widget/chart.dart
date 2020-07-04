@@ -9,21 +9,24 @@ class Chart extends StatelessWidget {
   List<Map<String, Object>> get groupedTransactionsValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
-      double totalSum;
+      double totalSum = 0;
 
       for (var i = 0; i < recentTransactions.length; i++) {
         if (recentTransactions[i].date.day == weekDay.day &&
             recentTransactions[i].date.month == weekDay.month &&
             recentTransactions[i].date.year == weekDay.year) {
-          totalSum = recentTransactions[i].amount;
+          totalSum += recentTransactions[i].amount;
         }
       }
-      return {'day': DateFormat.E(weekDay), 'amount': totalSum};
+      print(DateFormat.E().format(weekDay));
+      print(totalSum);
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactionsValues);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
