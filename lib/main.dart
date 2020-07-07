@@ -61,7 +61,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-
+  bool _switchValue = false;
   final List<Transaction> _userTransaction = [
     // Transaction(
     //   id: 't1',
@@ -139,25 +139,40 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: (MediaQuery.of(context).size.height -
-                      _appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.3,
-              child: Chart(
-                _recentTransactions,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Show chart'),
+                Switch(
+                  value: _switchValue,
+                  onChanged: (val) {
+                    setState(() {
+                      _switchValue = val;
+                    });
+                  },
+                ),
+              ],
             ),
-            Container(
-              height: (MediaQuery.of(context).size.height -
-                      _appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) *
-                  0.7,
-              child: TransactionList(
-                _userTransaction,
-                _deleteTransaction,
-              ),
-            ),
+            _switchValue
+                ? Container(
+                    height: (MediaQuery.of(context).size.height -
+                            _appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.3,
+                    child: Chart(
+                      _recentTransactions,
+                    ),
+                  )
+                : Container(
+                    height: (MediaQuery.of(context).size.height -
+                            _appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    child: TransactionList(
+                      _userTransaction,
+                      _deleteTransaction,
+                    ),
+                  ),
           ],
         ),
       ),
