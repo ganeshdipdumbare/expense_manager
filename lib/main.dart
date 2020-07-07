@@ -1,5 +1,6 @@
 import 'package:expense_manager/widget/transaction_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import './model/transaction.dart';
 import './widget/new_transaction.dart';
@@ -7,6 +8,11 @@ import './widget/transaction_list.dart';
 import './widget/chart.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MyApp());
 }
 
